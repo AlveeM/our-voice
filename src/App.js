@@ -1,25 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import { Route, Switch } from 'react-router-dom';
+
+import NavBar from './Components/NavBar';
+import UpcomingElectionsContainer from './Components/UpcomingElectionsContainer';
+import RepresentativesContainer from './Components/RepresentativesContainer';
+import SignIn from './Components/SignIn';
+import SignUp from './Components/SignUp';
+
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+
 function App() {
+  const theme = createMuiTheme({
+    palette: {
+      type: 'light',
+    },
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <NavBar />
+      <Switch>
+        <Route exact path="/">
+          <UpcomingElectionsContainer />
+        </Route>
+        <Route exact path="/representatives">
+          <RepresentativesContainer />
+        </Route>
+        <Route exact path="/sign-in">
+          <SignIn />
+        </Route>
+        <Route exact path="/sign-up">
+          <SignUp />
+        </Route>
+      </Switch>
+    </ThemeProvider>
   );
 }
 
