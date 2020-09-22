@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import UpcomingElectionCard from './UpcomingElectionCard';
+import electionsData from '../DATA/civics-elections';
 
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { useSelector, useDispatch } from 'react-redux';
+
 
 const useStyles = makeStyles({
   container: {
@@ -16,41 +16,26 @@ const useStyles = makeStyles({
     paddingTop: "20px",
     paddingLeft: "50px",
     paddingRight: "50px",
-  }
+  },
 });
-
-const getElectionCard = () => {
-  return (
-    <Grid item xs={12} sm={6} md={4} lg={3}>
-      <Card>
-        <CardContent>
-          Hi
-        </CardContent>
-      </Card>
-    </Grid>
-  )
-}
 
 function UpcomingElectionsContainer() {
   const classes = useStyles();
-  const test = true;
+  const loading = true;
+  const [elections, setElections] = useState(electionsData.elections.slice(1))
 
   return (
-    <Container maxWidth="xl">
-      <Grid container spacing={4} align="center" className={classes.container}>
-        {test ? (
+    <Container maxWidth="lg">
+      <Grid container spacing={4} justify="center" className={classes.container}>
+        {loading ? (
           <>
-          {getElectionCard()}
-          {getElectionCard()}
-          {getElectionCard()}
-          {getElectionCard()}
-          {getElectionCard()}
-          {getElectionCard()}
-          {getElectionCard()}
-          {getElectionCard()}
-          {getElectionCard()}
-          {getElectionCard()}
-          {getElectionCard()}
+            {elections.map(election => {
+              return (
+                <Grid item xs={12} sm={6} md={4}>
+                  <UpcomingElectionCard key={election.id} election={election} />
+                </Grid>
+              ) 
+            })}
           </>
         ) : (
           <Grid item xs={12}>
