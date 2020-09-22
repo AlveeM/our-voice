@@ -1,4 +1,4 @@
-import actionsConst from '../Utilities/actionConstants';
+import types from '../Utilities/types';
 
 let defaultState = {
   token: null,
@@ -6,12 +6,12 @@ let defaultState = {
 
 const jwtReducer = (state = defaultState, action) => {
   switch(action.type) {
-    case actionsConst.SET_JWT_TOKEN:
+    case types.SET_JWT_TOKEN:
       return {
         ...state,
         token: action.payload
       };
-    case actionsConst.REMOVE_JWT_TOKEN:
+    case types.REMOVE_JWT_TOKEN:
       return defaultState;
     default:
       return state;

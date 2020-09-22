@@ -1,4 +1,4 @@
-import actionsConst from '../Utilities/actionConstants';
+import types from '../Utilities/types';
 
 const initialState = {
   id: undefined,
@@ -11,14 +11,14 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {  
   switch(action.type) {
-    case actionsConst.SET_USER:
+    case types.SET_USER:
       return action.payload.user;
-    case actionsConst.UPDATE_USER_INFO:
+    case types.UPDATE_USER_INFO:
       return {
         ...state,
         ...action.payload.user
       }
-    case actionsConst.SIGN_OUT_USER:
+    case types.SIGN_OUT_USER:
       return initialState;
     default:
       return state;

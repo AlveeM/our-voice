@@ -1,4 +1,4 @@
-import actionsConst from '../Utilities/actionConstants';
+import types from '../Utilities/types';
 
 const defaultState = {
   elections: [],
@@ -6,7 +6,7 @@ const defaultState = {
 
 const upcomingElectionsReducer = (state = defaultState, action) => {
   switch(action.type) {
-    case actionsConst.SET_UPCOMING_ELECTIONS:
+    case types.SET_UPCOMING_ELECTIONS:
       return action.payload.upcomingElections
     default:
       return state

@@ -9,12 +9,8 @@ import App from './App';
 
 import CSSBaseline from '@material-ui/core/CssBaseline';
 
-import actions from './Actions';
-
 const history = createBrowserHistory();
 let store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-store.dispatch(actions.jwt.setJWT("hello"))
-store.dispatch(actions.jwt.removeJWT())
 
 ReactDOM.render(
     <Provider store={store}>

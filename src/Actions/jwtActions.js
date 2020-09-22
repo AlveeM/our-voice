@@ -1,15 +1,15 @@
-import actionsConst from '../Utilities/actionConstants';
+import types from '../Utilities/actionConstants';
 
 const setJWT = (token) => {
   return {
-    type: actionsConst.SET_JWT_TOKEN,
+    type: types.SET_JWT_TOKEN,
     payload: token
   }
 }
 
 const removeJWT = () => {
   return {
-    type: actionsConst.REMOVE_JWT_TOKEN,
+    type: types.REMOVE_JWT_TOKEN,
   }
 }
 
