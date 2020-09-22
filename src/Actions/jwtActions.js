@@ -1,4 +1,4 @@
-import types from '../Utilities/actionConstants';
+import types from '../Utilities/types';
 
 const setJWT = (token) => {
   return {
