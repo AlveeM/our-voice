@@ -1,13 +1,13 @@
 import types from '../Utilities/types';
 
-const setJWT = (token) => {
-  return {
+export const setJWT = (token) => {
+return {
     type: types.SET_JWT_TOKEN,
     payload: token
   }
 }
 
-const removeJWT = () => {
+export const removeJWT = () => {
   return {
     type: types.REMOVE_JWT_TOKEN,
   }

@@ -15,6 +15,9 @@ import Container from '@material-ui/core/Container';
 
 import { Link as RouterLink } from 'react-router-dom';
 
+import { useDispatch } from 'react-redux';
+import { setJWT } from '../Actions/jwtActions';
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -64,9 +67,10 @@ const formReducer = (state, { field, value }) => {
 
 export default function SignUp() {
   const classes = useStyles();
-  const [formState, formDispatch] = useReducer(formReducer, formInitialState)
+  const dispatch = useDispatch();
+  const [formState, formDispatch] = useReducer(formReducer, formInitialState);
   const { username, password, line1, city, state } = formState;
-  const zipCode = formState["zip_code"]
+  const zipCode = formState["zip_code"];
 
   const handleOnChange = e => {
     formDispatch({ field: e.target.name, value: e.target.value })
@@ -91,7 +95,8 @@ export default function SignUp() {
   }
 
   const handleResponse = res => {
-    console.log(res);
+    localStorage.token = res.token
+    dispatch(setJWT(res.token));
   }
 
   return (

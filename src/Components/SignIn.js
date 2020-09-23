@@ -15,6 +15,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 import { Link as RouterLink, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setJWT } from '../Actions/jwtActions';
 
 function Copyright() {
   return (
@@ -61,6 +63,7 @@ const formReducer = (state, { field, value }) => {
 
 export default function SignIn() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const history = useHistory();
   const [formState, formDispatch] = useReducer(formReducer, formInitialState);
   const { username, password } = formState;
@@ -89,6 +92,7 @@ export default function SignIn() {
 
   const handleResponse = res => {
     localStorage.token = res.token
+    dispatch(setJWT(res.token));
   }
 
   useEffect(() => {
@@ -139,10 +143,10 @@ export default function SignIn() {
             value={password}
             onChange={handleOnChange}
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
-          />
+          /> */}
           <Button
             type="submit"
             fullWidth
