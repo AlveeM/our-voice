@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
 
-const HomeContainer = () => {
+export default function HomeContainer() {
   return (
     <Grid container direction="column">
       <Grid item container direction="column">
@@ -28,5 +28,3 @@ const HomeContainer = () => {
     </Grid>
   )
 }
-
-export default HomeContainer;

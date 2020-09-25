@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-function UpcomingElectionsContainer() {
+export default function UpcomingElectionsContainer() {
   const classes = useStyles();
   const [loading, setLoading] = useState(true);
   const [elections, setElections] = useState([])
@@ -50,5 +50,3 @@ function UpcomingElectionsContainer() {
     </Container>
   )
 }
-
-export default UpcomingElectionsContainer;

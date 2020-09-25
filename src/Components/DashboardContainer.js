@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-function DashboardContainer() {
+export default function DashboardContainer() {
   const classes = useStyles();
 
   return (
@@ -36,5 +36,3 @@ function DashboardContainer() {
     </Container>
   )
 }
-
-export default DashboardContainer;

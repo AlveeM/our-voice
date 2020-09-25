@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DashboardTabs = () => {
+export default function DashboardTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(2);
 
@@ -116,5 +116,3 @@ const DashboardTabs = () => {
     </div>
   );
 }
-
-export default DashboardTabs;

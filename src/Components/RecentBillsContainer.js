@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-function RecentBillsContainer() {
+export default function RecentBillsContainer() {
   const classes = useStyles();
   const [loading, setLoading] = useState(true);
   const [recentBills, setRecentBills] = useState([])
@@ -64,5 +64,3 @@ function RecentBillsContainer() {
     </Container>
   )
 }
-
-export default RecentBillsContainer;

@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-const RepresentativesContainer = () => {
+export default function RepresentativesContainer() {
   const [loading, setLoading] = useState(true);
   const [representatives, setRepresentatives] = useState([]);
   const classes = useStyles();
@@ -62,18 +62,16 @@ const RepresentativesContainer = () => {
   )
 }
 
-const parseDataToRepresentatives = (data) => {
-    const representatives = []
-    for (let office of data.offices) {
-      for (let officialIdx of office.officialIndices) {
-        const representative = data.officials[officialIdx];
-        representative["officeName"] = office.name;
-        representative["divisionId"] = office.divisionId;
+function parseDataToRepresentatives(data) {
+  const representatives = []
+  for (let office of data.offices) {
+    for (let officialIdx of office.officialIndices) {
+      const representative = data.officials[officialIdx];
+      representative["officeName"] = office.name;
+      representative["divisionId"] = office.divisionId;
 
-        representatives.push(representative)
-      }
+      representatives.push(representative)
     }
-    return representatives;
   }
-
-export default RepresentativesContainer;
+  return representatives;
+}

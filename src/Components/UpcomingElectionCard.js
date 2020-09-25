@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const UpcomingElectionCard = (props) => {
+export default function UpcomingElectionCard(props) {
   const { name, electionDay, ocdDivisionId } = props.election;
   const [electionAdminBody, setElectionAdminBody] = useState({electionInfoUrl: "", votingLocationFinderUrl: "", ballotInfoUrl: ""})
 
@@ -90,5 +90,3 @@ const UpcomingElectionCard = (props) => {
     </Card>
   );
 }
-
-export default UpcomingElectionCard;

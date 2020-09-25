@@ -9,7 +9,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 
-const RecentBillCard = (props) => {
+export default function RecentBillCard(props) {
   const { number,
           short_title, 
           sponsor_title, 
@@ -40,5 +40,3 @@ const RecentBillCard = (props) => {
     </Card>
   );
 }
-
-export default RecentBillCard;

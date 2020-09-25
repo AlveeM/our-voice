@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const NavBar = () => {
+export default function NavBar() {
   const history = useHistory();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -150,5 +150,3 @@ const NavBar = () => {
     </div>
   );
 };
-
-export default NavBar;

@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-function CongressContainer() {
+export default function CongressContainer() {
   const classes = useStyles();
   const [loading, setLoading] = useState(true);
   const [congressMembers, setCongressMembers] = useState([])
@@ -52,5 +52,3 @@ function CongressContainer() {
     </Container>
   )
 }
-
-export default CongressContainer;
