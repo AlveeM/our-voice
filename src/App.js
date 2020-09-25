@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
 
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 
 import NavBar from './Components/NavBar';
-import UpcomingElectionsContainer from './Components/UpcomingElectionsContainer';
-import RepresentativesContainer from './Components/RepresentativesContainer';
+import HomeContainer from './Components/HomeContainer';
+import CongressContainer from './Components/CongressContainer';
+import DashboardContainer from './Components/DashboardContainer';
 import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
 
@@ -21,14 +22,18 @@ function App() {
   });
 
   return (
+    <>
     <ThemeProvider theme={theme}>
       <NavBar />
       <Switch>
         <Route exact path="/">
-          <UpcomingElectionsContainer />
+          <HomeContainer />
         </Route>
-        <Route exact path="/representatives">
-          <RepresentativesContainer />
+        <Route exact path="/congress">
+          <CongressContainer />
+        </Route>
+        <Route exact path="/dashboard">
+          <DashboardContainer />
         </Route>
         <Route exact path="/sign-in">
           <SignIn />
@@ -38,6 +43,7 @@ function App() {
         </Route>
       </Switch>
     </ThemeProvider>
+    </>
   );
 }
 

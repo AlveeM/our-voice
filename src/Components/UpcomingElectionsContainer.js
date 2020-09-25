@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import UpcomingElectionCard from './UpcomingElectionCard';
 import electionsData from '../DATA/civics-elections';
@@ -13,7 +13,6 @@ const useStyles = makeStyles({
   container: {
     width: '100%',
     margin: '0px',
-    paddingTop: "20px",
     paddingLeft: "50px",
     paddingRight: "50px",
   },
@@ -21,18 +20,23 @@ const useStyles = makeStyles({
 
 function UpcomingElectionsContainer() {
   const classes = useStyles();
-  const loading = true;
-  const [elections, setElections] = useState(electionsData.elections.slice(1))
+  const [loading, setLoading] = useState(true);
+  const [elections, setElections] = useState([])
+
+  useEffect(() => {
+    setElections(electionsData.elections.slice(1))
+    setLoading(false);
+  }, [])
 
   return (
     <Container maxWidth="lg">
       <Grid container spacing={4} justify="center" className={classes.container}>
-        {loading ? (
+        {!loading ? (
           <>
             {elections.map(election => {
               return (
-                <Grid item xs={12} sm={6} md={4}>
-                  <UpcomingElectionCard key={election.id} election={election} />
+                <Grid key={election.id} item xs={12} sm={6} md={4}>
+                  <UpcomingElectionCard election={election} />
                 </Grid>
               ) 
             })}

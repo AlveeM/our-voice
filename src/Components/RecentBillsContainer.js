@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 function RecentBillsContainer() {
   const classes = useStyles();
   const [loading, setLoading] = useState(true);
-  const [recentBills, setRecentBills] = useState({})
+  const [recentBills, setRecentBills] = useState([])
 
   useEffect(() => {
     setRecentBills(recentBillsData.results[0].bills)

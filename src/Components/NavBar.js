@@ -7,12 +7,15 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import Link from "@material-ui/core/Link";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useHistory } from 'react-router-dom';
+
+import { useHistory, Link as RouterLink } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    marginBottom: '30px'
   },
   menuButton: {
     marginRight: theme.spacing(2)
@@ -26,6 +29,12 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flex: 1,
     justifyContent: "space-evenly"
+  },
+  anchorColorWhite: {
+    color: 'white'
+  },
+  anchorColorBlack: {
+    color: 'black'
   }
 }));
 
@@ -42,13 +51,13 @@ const NavBar = () => {
   };
 
   const handleMenuClick = pageURL => {
-    history.push(pageURL);
+    // history.push(pageURL);
     setAnchorEl(null);
   };
 
-  const handleButtonClick = pageURL => {
-    history.push(pageURL);
-  };
+  // const handleButtonClick = pageURL => {
+  //   history.push(pageURL);
+  // };
 
   const menuItems = [
     {
@@ -56,12 +65,16 @@ const NavBar = () => {
       pageURL: "/"
     },
     {
-      menuTitle: "Representatives",
-      pageURL: "/representatives"
+      menuTitle: "Congress",
+      pageURL: "/congress"
     },
     {
       menuTitle: "How to Vote",
       pageURL: "/how-to-vote"
+    },
+    {
+      menuTitle: "Dashboard",
+      pageURL: "/dashboard"
     },
     {
       menuTitle: "Sign In",
@@ -101,12 +114,15 @@ const NavBar = () => {
                 }}
                 open={open}
                 onClose={() => setAnchorEl(null)}
+                className={classes.anchorColorBlack}
               >
                 {menuItems.map(menuItem => {
                   const { menuTitle, pageURL } = menuItem;
                   return (
-                    <MenuItem key={menuTitle} onClick={() => handleMenuClick(pageURL)}>
-                      {menuTitle}
+                    <MenuItem key={menuTitle} onClick={() => handleMenuClick(pageURL)} >
+                      <Link component={RouterLink} to={pageURL} className={classes.anchorColor} underline="none">
+                        {menuTitle}
+                      </Link>
                     </MenuItem>
                   );
                 })}
@@ -120,8 +136,11 @@ const NavBar = () => {
                   <MenuItem
                     key={`${menuTitle}`}
                     variant="contained"
-                    onClick={() => handleButtonClick(pageURL)}>
-                  {menuTitle}
+                    // onClick={() => handleButtonClick(pageURL)}
+                    >
+                      <Link component={RouterLink} to={pageURL} className={classes.anchorColorWhite} underline="none">
+                        {menuTitle}
+                      </Link>
                   </MenuItem>)
               })}
             </div>

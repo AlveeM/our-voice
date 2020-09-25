@@ -2,19 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import rootReducer from './Reducers';
-import { createBrowserHistory } from 'history';
+// import { createBrowserHistory } from 'history';
 import App from './App';
 
 import CSSBaseline from '@material-ui/core/CssBaseline';
 
-const history = createBrowserHistory();
+// const history = createBrowserHistory();
 let store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 ReactDOM.render(
     <Provider store={store}>
-      <Router history={history}>
+      <Router>
         <CSSBaseline />
         <App />
       </Router>

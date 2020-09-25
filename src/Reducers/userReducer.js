@@ -1,12 +1,21 @@
 import types from '../Utilities/types';
 
+// const initialState = {
+//   id: undefined,
+//   username: "",
+//   line1: "",
+//   city: "",
+//   state: "",
+//   zip_code: "",
+// }
+
 const initialState = {
-  id: undefined,
-  username: "",
-  line1: "",
-  city: "",
-  state: "",
-  zip_code: "",
+  id: 1,
+  username: "alvee",
+  line1: "8847 Francis Lewis Blvd",
+  city: "Queens",
+  state: "NY",
+  zip_code: "11427",
 }
 
 const userReducer = (state = initialState, action) => {  
