@@ -6,6 +6,7 @@ import { Route, Switch, Link } from 'react-router-dom';
 import NavBar from './Components/NavBar';
 import HomeContainer from './Components/HomeContainer';
 import CongressContainer from './Components/CongressContainer';
+import ResourcesContainer from './Components/ResourcesContainer';
 import DashboardContainer from './Components/DashboardContainer';
 import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
@@ -31,6 +32,9 @@ function App() {
         </Route>
         <Route exact path="/congress">
           <CongressContainer />
+        </Route>
+        <Route exact path="/resources">
+          <ResourcesContainer />
         </Route>
         <Route exact path="/dashboard">
           <DashboardContainer />

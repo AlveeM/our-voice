@@ -28,6 +28,10 @@ export default function RepresentativesContainer() {
     setLoading(false);
   }, [])
 
+  useEffect(() => {
+    console.log(representatives)
+  }, [representatives])
+
   return (
     <Container maxWidth="lg">
       <Grid container spacing={4} justify="center" className={classes.container}>

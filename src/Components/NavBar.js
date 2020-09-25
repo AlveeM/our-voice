@@ -73,6 +73,10 @@ export default function NavBar() {
       pageURL: "/how-to-vote"
     },
     {
+      menuTitle: "Resources",
+      pageURL: "/resources"
+    },
+    {
       menuTitle: "Dashboard",
       pageURL: "/dashboard"
     },
