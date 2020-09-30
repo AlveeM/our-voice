@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 import UpcomingElectionCard from './UpcomingElectionCard';
 import electionsData from '../DATA/civics-elections';
+import { getElections } from '../API/ourVoice';
 
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from '@material-ui/core/CircularProgress';
-
 
 const useStyles = makeStyles({
   container: {
@@ -24,7 +24,7 @@ export default function UpcomingElectionsContainer() {
   const [elections, setElections] = useState([])
 
   useEffect(() => {
-    setElections(electionsData.elections.slice(1))
+    getElections().then(res => setElections(res))
     setLoading(false);
   }, [])
 

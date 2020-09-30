@@ -19,12 +19,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-  },
   expand: {
     transform: 'rotate(0deg)',
-    // marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
@@ -38,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function UpcomingElectionCard(props) {
+export default function UserElectionCard(props) {
   const { id, electionId, name, electionDay, ocdDivisionId } = props.election;
   const [electionAdminBody, setElectionAdminBody] = useState({electionInfoUrl: "", votingLocationFinderUrl: "", ballotInfoUrl: ""})
   const { electionInfoUrl, votingLocationFinderUrl, ballotInfoUrl } = electionAdminBody;
@@ -79,6 +75,16 @@ export default function UpcomingElectionCard(props) {
       <CardContent>
         <Typography variant="h6" component="p" align="center">
           {name}
+          <IconButton
+            className={clsx(classes.expand, {
+              [classes.expandOpen]: expanded,
+            })}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -89,24 +95,14 @@ export default function UpcomingElectionCard(props) {
             : <Button onClick={handleUnfollowClick} variant="contained" color="primary" className={classes.follow}>
               Unfollow
             </Button> }
-          {/* <IconButton
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded,
-            })}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton> */}
       </CardActions>
-      {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography align="center" paragraph><Link href={electionInfoUrl}>Election Info</Link></Typography>
           <Typography align="center" paragraph><Link href={votingLocationFinderUrl}>Voting Location Finder</Link></Typography>
           <Typography align="center" paragraph><Link href={ballotInfoUrl}>Ballot Info</Link></Typography>
         </CardContent>
-      </Collapse> */}
+      </Collapse>
     </Card>
   );
 }
