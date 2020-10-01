@@ -8,14 +8,14 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import AccountCircleOutlined from '@material-ui/icons/AccountCircleOutlined';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 import { Link as RouterLink } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { setJWT } from '../Actions/jwtActions';
 
 function Copyright() {
@@ -65,12 +65,14 @@ const formReducer = (state, { field, value }) => {
   }
 }
 
-export default function SignUp() {
+export default function UserProfileEdit() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [formState, formDispatch] = useReducer(formReducer, formInitialState);
   const { username, password, line1, city, state } = formState;
   const zipCode = formState["zip_code"];
+  const currentUser = useSelector(state => state.user)
+  console.log(currentUser);
 
   const handleOnChange = e => {
     formDispatch({ field: e.target.name, value: e.target.value })
@@ -104,10 +106,10 @@ export default function SignUp() {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <AccountCircleOutlined />
+          <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Edit Profile
         </Typography>
         <form onSubmit={handleOnSubmit} className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -195,12 +197,12 @@ export default function SignUp() {
             color="primary"
             className={classes.submit}
           >
-            Sign Up
+            Update
           </Button>
           <Grid container justify="center">
             <Grid item>
               <Typography variant="body2">
-                <RouterLink to="/sign-in">Already have an account? Sign in</RouterLink>
+                <RouterLink to="/dashboard">Go to Dashboard</RouterLink>
               </Typography>
             </Grid>
           </Grid>

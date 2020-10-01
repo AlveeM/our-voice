@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -11,6 +11,51 @@ import Link from "@material-ui/core/Link";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import { useHistory, Link as RouterLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUserInitialState } from '../Actions/userActions';
+import { removeJWT } from '../Actions/jwtActions'; 
+
+const menuItemsSignedIn = [
+    {
+      menuTitle: "Home",
+      pageURL: "/"
+    },
+    {
+      menuTitle: "Congress",
+      pageURL: "/congress"
+    },
+    {
+      menuTitle: "Resources",
+      pageURL: "/resources"
+    },
+    {
+      menuTitle: "Dashboard",
+      pageURL: "/dashboard"
+    },
+    {
+      menuTitle: "Sign Out",
+      pageURL: "/sign-out"
+    }
+  ];
+
+const menuItemsSignedOut = [
+  {
+    menuTitle: "Home",
+    pageURL: "/"
+  },
+  {
+    menuTitle: "Congress",
+    pageURL: "/congress"
+  },
+  {
+    menuTitle: "Resources",
+    pageURL: "/resources"
+  },
+  {
+    menuTitle: "Sign In",
+    pageURL: "/sign-in"
+  }
+];
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,52 +84,47 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function NavBar() {
-  const history = useHistory();
   const classes = useStyles();
+  const history = useHistory();
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const userToken = useSelector(state => state.jwtToken.token)
+  const [menuItems, setMenuItems] = useState(menuItemsSignedOut)
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
   };
 
+  const signOut = (pageURL) => {
+    dispatch(setUserInitialState());
+    dispatch(removeJWT());
+    localStorage.clear();
+    history.push('/')
+  }
+
   const handleMenuClick = pageURL => {
-    // history.push(pageURL);
     setAnchorEl(null);
+    if (pageURL === '/sign-out') {
+      signOut();
+    }
   };
 
-  // const handleButtonClick = pageURL => {
-  //   history.push(pageURL);
-  // };
-
-  const menuItems = [
-    {
-      menuTitle: "Home",
-      pageURL: "/"
-    },
-    {
-      menuTitle: "Congress",
-      pageURL: "/congress"
-    },
-    {
-      menuTitle: "How to Vote",
-      pageURL: "/how-to-vote"
-    },
-    {
-      menuTitle: "Resources",
-      pageURL: "/resources"
-    },
-    {
-      menuTitle: "Dashboard",
-      pageURL: "/dashboard"
-    },
-    {
-      menuTitle: "Sign In",
-      pageURL: "/sign-in"
+  const handleButtonClick = pageURL => {
+    if (pageURL === '/sign-out') {
+      signOut();
     }
-  ];
+  };
+
+  useEffect(() => {
+    if (userToken) {
+      setMenuItems(menuItemsSignedIn);
+    } else {
+      setMenuItems(menuItemsSignedOut);
+    }
+  }, [userToken])
 
   return (
     <div className={classes.root}>
@@ -140,7 +180,7 @@ export default function NavBar() {
                   <MenuItem
                     key={`${menuTitle}`}
                     variant="contained"
-                    // onClick={() => handleButtonClick(pageURL)}
+                    onClick={() => handleButtonClick(pageURL)}
                     >
                       <Link component={RouterLink} to={pageURL} className={classes.anchorColorWhite} underline="none">
                         {menuTitle}

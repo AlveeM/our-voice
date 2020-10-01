@@ -10,13 +10,15 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import AccountCircleOutlined from '@material-ui/icons/AccountCircleOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-import { Link as RouterLink, useHistory } from 'react-router-dom';
+import { Link as RouterLink, useHistory, Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setJWT } from '../Actions/jwtActions';
+import { setUser } from '../Actions/userActions';
 
 function Copyright() {
   return (
@@ -88,11 +90,14 @@ export default function SignIn() {
     fetch(`http://localhost:4000/login`, postConfig)
       .then(res => res.json())
       .then(user => handleResponse(user))
+      .then(_ => history.push('/'))
   }
 
   const handleResponse = res => {
-    localStorage.token = res.token
+    localStorage.token = res.token;
+    localStorage.user = res.user;
     dispatch(setJWT(res.token));
+    dispatch(setUser(res.user));
   }
 
   useEffect(() => {
@@ -100,10 +105,9 @@ export default function SignIn() {
       fetch(`http://localhost:4000/users/stay_logged_in`, {
         headers: {
           "Authorization": localStorage.token
-        }
-      })
-        .then(res => res.json())
-        .then(res => console.log(res))
+        }})
+        // .then(res => res.json())
+        // .then(res => console.log(res))
     }
   }, [])
 
@@ -112,7 +116,8 @@ export default function SignIn() {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          {/* <LockOutlinedIcon /> */}
+          <AccountCircleOutlined />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in

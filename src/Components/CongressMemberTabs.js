@@ -1,9 +1,5 @@
 import React from 'react';
 
-import RepresentativesContainer from './RepresentativesContainer';
-import UserElectionsContainer from './UserElectionsContainer';
-import UserDivisionsContainer from './UserDivisionsContainer';
-
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -20,7 +16,11 @@ import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
+
+import OfficeExpensesContainer from './OfficeExpensesContainer';
+import PrivateTravelsContainer from './PrivateTravelsContainer';
+import BillCosponsorshipsContainer from './BillCosponsorshipsContainer';
+import VotePositionsContainer from './VotePositionsContainer';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -61,14 +61,11 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     backgroundColor: theme.palette.background.paper,
   },
-  tabsPanel: {
-    marginBottom: '15px'
-  }
 }));
 
-export default function DashboardTabs({ representatives, userElections, divisions }) {
+export default function CongressMemberTabs({ officeExpenses, privateTravels, bills, votePositions }) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(2);
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -76,7 +73,7 @@ export default function DashboardTabs({ representatives, userElections, division
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default" className={classes.tabsPanel}>
+      <AppBar position="static" color="default">
         <Tabs
           value={value}
           onChange={handleChange}
@@ -84,24 +81,24 @@ export default function DashboardTabs({ representatives, userElections, division
           scrollButtons="on"
           indicatorColor="primary"
           textColor="primary"
-          aria-label="scrollable force tabs example"
+          aria-label="representative details tabs"
         >
-          <Tab label="Check Registration" icon={<PhoneIcon />} {...a11yProps(0)} />
-          <Tab label="Register to Vote" icon={<FavoriteIcon />} {...a11yProps(1)} />
-          <Tab label="Representatives" icon={<PersonPinIcon />} {...a11yProps(2)} />
-          <Tab label="Upcoming Elections" icon={<HelpIcon />} {...a11yProps(3)} />
-          <Tab label="Divisions" icon={<ShoppingBasket />} {...a11yProps(4)} />
-          {/* <Tab label="Item Six" icon={<ThumbDown />} {...a11yProps(5)} />
+          <Tab label="Office Expenses" icon={<PhoneIcon />} {...a11yProps(0)} />
+          <Tab label="Private Travels" icon={<FavoriteIcon />} {...a11yProps(1)} />
+          <Tab label="Bill Cosponsorships" icon={<PersonPinIcon />} {...a11yProps(2)} />
+          <Tab label="Vote Positions" icon={<HelpIcon />} {...a11yProps(3)} />
+          {/* <Tab label="Item Five" icon={<ShoppingBasket />} {...a11yProps(4)} />
+          <Tab label="Item Six" icon={<ThumbDown />} {...a11yProps(5)} />
           <Tab label="Item Seven" icon={<ThumbUp />} {...a11yProps(6)} /> */}
         </Tabs>
       </AppBar>
-      {value === 0 && <iframe title="check registration" src="https://verify.vote.org/?partner=111111&campaign=free-tools" width="100%" height="850" marginHeight="0" frameBorder="0" id="frame3" scrollable ="no"></iframe>}
-      {value === 1 && <iframe title="register to vote" src="https://register.vote.org/?partner=111111&campaign=free-tools" width="100%" height="850" marginHeight="0" frameBorder="0" id="frame1" scrollable ="no"></iframe>}
-      {value === 2 && (representatives && representatives.length !== 0 && <RepresentativesContainer representatives={representatives} />)}
-      {value === 3 && <UserElectionsContainer elections={userElections} />}
-      {value === 4 && <UserDivisionsContainer divisions={divisions} />}
-      {/* <TabPanel value={value} index={0} className={classes.voteTool}>
-        <iframe title="check registration" src="https://verify.vote.org/?partner=111111&campaign=free-tools" width="100%" height="auto" marginheight="0" frameborder="0" id="frame3" scrollable ="no"></iframe>
+      {value === 0 && <OfficeExpensesContainer officeExpenses={officeExpenses} />}
+      {value === 1 && <PrivateTravelsContainer privateTravels={privateTravels} />}
+      {value === 2 && <BillCosponsorshipsContainer bills={bills} />}
+      {value === 3 && <VotePositionsContainer votePositions={votePositions} />}
+      {/* <TabPanel value={value} index={0}>
+        Item One
+        <RepresentativesContainer />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two

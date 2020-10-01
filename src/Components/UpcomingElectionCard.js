@@ -81,7 +81,7 @@ export default function UpcomingElectionCard(props) {
           {name}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {localStorage.token && <CardActions disableSpacing>
           { !userElectionIds.includes(String(electionId)) 
             ? <Button onClick={handleFollowClick} variant="contained" color="primary" className={classes.follow}>
               Follow
@@ -89,17 +89,7 @@ export default function UpcomingElectionCard(props) {
             : <Button onClick={handleUnfollowClick} variant="contained" color="primary" className={classes.follow}>
               Unfollow
             </Button> }
-          {/* <IconButton
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded,
-            })}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton> */}
-      </CardActions>
+      </CardActions>}
       {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography align="center" paragraph><Link href={electionInfoUrl}>Election Info</Link></Typography>

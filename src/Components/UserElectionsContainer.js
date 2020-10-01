@@ -15,13 +15,8 @@ const useStyles = makeStyles({
   },
 });
 
-export default function UserElectionsContainer() {
+export default function UserElectionsContainer({ elections }) {
   const classes = useStyles();
-  const elections = useSelector(state => state.user.elections.data)
-
-  useEffect(() => {
-    console.log(elections)
-  }, [elections])
 
   return (
     <Container maxWidth="lg">

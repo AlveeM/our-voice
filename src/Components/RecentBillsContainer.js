@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 import RecentBillCard from './RecentBillCard';
 import recentBillsData from '../DATA/congress-recent-bills';
+import { getRecentBills } from '../API/congressPropublica';
 
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from '@material-ui/core/CircularProgress';
-
 
 const useStyles = makeStyles({
   container: {
@@ -25,13 +25,10 @@ export default function RecentBillsContainer() {
   const [recentBills, setRecentBills] = useState([])
 
   useEffect(() => {
-    setRecentBills(recentBillsData.results[0].bills)
+    getRecentBills()
+      .then(res => setRecentBills(res))
     setLoading(false)
-  }, [])
-
-  // useEffect(() => {
-  //   console.log(recentBills)
-  // }, [recentBills])
+  }, [setRecentBills, setLoading])
 
   return (
     <Container maxWidth="lg">

@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
   button: {
-    textTransform: 'lowercase'
+    textTransform: 'none'
   }
 });
 

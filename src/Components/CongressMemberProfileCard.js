@@ -26,9 +26,6 @@ import YouTube from '@material-ui/icons/YouTube';
 import Email from '@material-ui/icons/Email';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-  },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
@@ -48,24 +45,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CongressMemberCard(props) {
+export default function CongressMemberProfileCard({ member }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  console.log(member);
 
   const {
-    id,
-    title,
-    short_title,
     first_name,
     middle_name,
     last_name,
-    party,
-    leadership_role,
     twitter_account,
     facebook_account,
     youtube_account,
+    roles,
     url,
     contact_form,
+  } = member
+
+  const {
+    title,
+    party,
     total_votes,
     missed_votes,
     total_present,
@@ -75,7 +74,7 @@ export default function CongressMemberCard(props) {
     missed_votes_pct,
     votes_with_party_pct,
     votes_against_party_pct
-  } = props.member
+  } = roles[0]
 
   const name = `${first_name} ${middle_name ? middle_name + " " : " "}${last_name}`
 
@@ -147,9 +146,6 @@ export default function CongressMemberCard(props) {
             Missed Votes Percentage: {missed_votes_pct}% <br/>
             Votes with Party: {votes_with_party_pct}% <br/>
             Votes Against Party: {votes_against_party_pct}% <br/><br/>
-            <Link align="center" component={RouterLink} to={`/congress/members/${id}`}>
-              <Button variant="outlined" color="primary">Deatils</Button>
-            </Link>
           </Typography>
         </CardContent>
       </Collapse>
