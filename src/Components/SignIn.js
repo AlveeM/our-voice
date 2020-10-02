@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -69,6 +69,7 @@ export default function SignIn() {
   const history = useHistory();
   const [formState, formDispatch] = useReducer(formReducer, formInitialState);
   const { username, password } = formState;
+  const [loginError, setLoginError] = useState(false);
 
   const handleOnChange = e => {
     formDispatch({field: e.target.name, value: e.target.value })
@@ -89,8 +90,15 @@ export default function SignIn() {
 
     fetch(`http://localhost:4000/login`, postConfig)
       .then(res => res.json())
-      .then(user => handleResponse(user))
-      .then(_ => history.push('/'))
+      .then(res => {
+        if (!res.error) {
+          handleResponse(res);
+          history.push('/')
+        } else {
+          setLoginError(true);
+          setTimeout(() => setLoginError(false), 2000);
+        }
+      })
   }
 
   const handleResponse = res => {
@@ -99,17 +107,6 @@ export default function SignIn() {
     dispatch(setJWT(res.token));
     dispatch(setUser(res.user));
   }
-
-  useEffect(() => {
-    if(localStorage.token) {
-      fetch(`http://localhost:4000/users/stay_logged_in`, {
-        headers: {
-          "Authorization": localStorage.token
-        }})
-        // .then(res => res.json())
-        // .then(res => console.log(res))
-    }
-  }, [])
 
   return (
     <Container component="main" maxWidth="xs">
@@ -152,6 +149,7 @@ export default function SignIn() {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           /> */}
+          {loginError && <Typography variant="body2" align="center" color="error">Wrong username or password. Please try again.</Typography>}
           <Button
             type="submit"
             fullWidth
@@ -162,11 +160,6 @@ export default function SignIn() {
             Sign In
           </Button>
           <Grid container justify="center">
-            {/* <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid> */}
             <Grid item>
               <Typography variant="body2">
                 <RouterLink to="/sign-up">{"Don't have an account? Sign Up"}</RouterLink>

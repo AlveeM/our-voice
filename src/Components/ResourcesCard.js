@@ -12,7 +12,8 @@ const useStyles = makeStyles({
   root: {
     minWidth: 220,
     minHeight: 380,
-    padding: '20px'
+    padding: '20px',
+    background: 'floralwhite',
   },
   title: {
     fontSize: 14,

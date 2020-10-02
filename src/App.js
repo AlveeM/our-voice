@@ -22,8 +22,6 @@ import { ThemeProvider } from '@material-ui/styles';
 
 
 function App() {
-  const [signedIn, setSignedIn] = useState(false)
-  const [menuState, setMenuState] = useState("")
   const dispatch = useDispatch();
 
   const theme = createMuiTheme({
@@ -45,12 +43,7 @@ function App() {
           localStorage.user = res.user;
           dispatch(setJWT(res.token));
           dispatch(setUser(res.user));
-          setSignedIn(true)
-          setMenuState("signed in")
         })
-    } else {
-      setSignedIn(false)
-      setMenuState("signed out")
     }
   }, [dispatch])
 

@@ -17,10 +17,12 @@ const useStyles = makeStyles({
       margin: '0px',
       paddingLeft: "50px",
       paddingRight: "50px",
+      background: '#e6e6fa'
     },
     controlBarPaper: {
       padding: '20px 15px',
-      marginBottom: '20px'
+      marginBottom: '20px',
+      background: '#fffaf0'
     }
   });
 

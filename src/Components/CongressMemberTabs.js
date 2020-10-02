@@ -8,9 +8,12 @@ import Grid from '@material-ui/core/Grid';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import PhoneIcon from '@material-ui/icons/Phone';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 import HelpIcon from '@material-ui/icons/Help';
+import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
@@ -83,10 +86,10 @@ export default function CongressMemberTabs({ officeExpenses, privateTravels, bil
           textColor="primary"
           aria-label="representative details tabs"
         >
-          <Tab label="Office Expenses" icon={<PhoneIcon />} {...a11yProps(0)} />
-          <Tab label="Private Travels" icon={<FavoriteIcon />} {...a11yProps(1)} />
+          <Tab label="Office Expenses" icon={<AttachMoneyIcon />} {...a11yProps(0)} />
+          <Tab label="Private Travels" icon={<FlightTakeoffIcon />} {...a11yProps(1)} />
           <Tab label="Bill Cosponsorships" icon={<PersonPinIcon />} {...a11yProps(2)} />
-          <Tab label="Vote Positions" icon={<HelpIcon />} {...a11yProps(3)} />
+          <Tab label="Vote Positions" icon={<HowToVoteIcon />} {...a11yProps(3)} />
           {/* <Tab label="Item Five" icon={<ShoppingBasket />} {...a11yProps(4)} />
           <Tab label="Item Six" icon={<ThumbDown />} {...a11yProps(5)} />
           <Tab label="Item Seven" icon={<ThumbUp />} {...a11yProps(6)} /> */}

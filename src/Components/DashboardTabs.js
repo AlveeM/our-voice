@@ -12,9 +12,12 @@ import Grid from '@material-ui/core/Grid';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import PhoneIcon from '@material-ui/icons/Phone';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 import HelpIcon from '@material-ui/icons/Help';
+import MapIcon from '@material-ui/icons/Map';
 import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
@@ -86,17 +89,17 @@ export default function DashboardTabs({ representatives, userElections, division
           textColor="primary"
           aria-label="scrollable force tabs example"
         >
-          <Tab label="Check Registration" icon={<PhoneIcon />} {...a11yProps(0)} />
-          <Tab label="Register to Vote" icon={<FavoriteIcon />} {...a11yProps(1)} />
+          <Tab label="Check Registration" icon={<CheckCircleIcon />} {...a11yProps(0)} />
+          <Tab label="Register to Vote" icon={<HowToVoteIcon />} {...a11yProps(1)} />
           <Tab label="Representatives" icon={<PersonPinIcon />} {...a11yProps(2)} />
           <Tab label="Upcoming Elections" icon={<HelpIcon />} {...a11yProps(3)} />
-          <Tab label="Divisions" icon={<ShoppingBasket />} {...a11yProps(4)} />
+          <Tab label="Divisions" icon={<MapIcon />} {...a11yProps(4)} />
           {/* <Tab label="Item Six" icon={<ThumbDown />} {...a11yProps(5)} />
           <Tab label="Item Seven" icon={<ThumbUp />} {...a11yProps(6)} /> */}
         </Tabs>
       </AppBar>
-      {value === 0 && <iframe title="check registration" src="https://verify.vote.org/?partner=111111&campaign=free-tools" width="100%" height="850" marginHeight="0" frameBorder="0" id="frame3" scrollable ="no"></iframe>}
-      {value === 1 && <iframe title="register to vote" src="https://register.vote.org/?partner=111111&campaign=free-tools" width="100%" height="850" marginHeight="0" frameBorder="0" id="frame1" scrollable ="no"></iframe>}
+      {value === 0 && <iframe title="check registration" src="https://verify.vote.org/?partner=111111&campaign=free-tools" width="100%" height="870" marginHeight="0" frameBorder="0" id="frame3" scrollable ="no"></iframe>}
+      {value === 1 && <iframe title="register to vote" src="https://register.vote.org/?partner=111111&campaign=free-tools" width="100%" height="870" marginHeight="0" frameBorder="0" id="frame1" scrollable ="no"></iframe>}
       {value === 2 && (representatives && representatives.length !== 0 && <RepresentativesContainer representatives={representatives} />)}
       {value === 3 && <UserElectionsContainer elections={userElections} />}
       {value === 4 && <UserDivisionsContainer divisions={divisions} />}
